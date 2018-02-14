@@ -317,6 +317,7 @@ namespace gazebo
             for(unsigned m=0; m < n_submeshes; m++) {
 
               const SubMesh *submesh = mesh->GetSubMesh(m);
+              
               unsigned n_vertices = submesh->GetVertexCount();
 
               switch(submesh->GetPrimitiveType())
@@ -394,8 +395,11 @@ namespace gazebo
                       for(size_t v=0; v < n_vertices; v++) {
 
                         const int index = submesh->GetIndex(v);
+#if GAZEBO_MAJOR_VERSION > 5
                         const gazebo::math::Vector3 vertex = submesh->Vertex(v);
-
+#else
+                        const gazebo::math::Vector3 vertex = submesh->GetVertex(v);
+#endif
                         mesh_msg.vertices[index].x = vertex.x * scale.x;
                         mesh_msg.vertices[index].y = vertex.y * scale.y;
                         mesh_msg.vertices[index].z = vertex.z * scale.z;
@@ -416,8 +420,11 @@ namespace gazebo
 
                       for(size_t v=0; v < n_vertices; v++) {
                         const int index = submesh->GetIndex(v);
+#if GAZEBO_MAJOR_VERSION > 5
                         const gazebo::math::Vector3 vertex = submesh->Vertex(v);
-
+#else
+                        const gazebo::math::Vector3 vertex = submesh->GetVertex(v);
+#endif
                         mesh_msg.vertices[index].x = vertex.x * scale.x;
                         mesh_msg.vertices[index].y = vertex.y * scale.y;
                         mesh_msg.vertices[index].z = vertex.z * scale.z;
