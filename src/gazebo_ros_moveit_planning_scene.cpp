@@ -28,7 +28,7 @@
 
 #include <gazebo/common/common.hh>
 
-#include <costar_gazebo_plugins/gazebo_ros_moveit_planning_scene.h>
+#include <cri_gazebo_plugins/gazebo_ros_moveit_planning_scene.h>
 
 namespace gazebo
 {
